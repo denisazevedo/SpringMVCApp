@@ -6,11 +6,11 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * TODO
+ * User Controller.
+ *
  * Created by denisazevedo on 09/01/2014.
  */
 @Controller
@@ -27,7 +27,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user, BindingResult result) {
+//    public String addUser(@ModelAttribute("user") User user, BindingResult result) {
+    public String addUser(@ModelAttribute("user") User user) {
 
         userRepository.save(user);
 
@@ -43,7 +44,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateUser(@ModelAttribute("user") User user, BindingResult result) {
+//    public String updateUser(@ModelAttribute("user") User user, BindingResult result) {
+    public String updateUser(@ModelAttribute("user") User user) {
         userRepository.save(user);
         return "redirect:/";
     }
@@ -57,7 +59,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "api/users", method = RequestMethod.GET)
-    public @ResponseBody String listUsersJson (ModelMap model) throws JSONException {
+//    public @ResponseBody String listUsersJson (ModelMap model) throws JSONException {
+    public @ResponseBody String listUsersJson () throws JSONException {
         JSONArray userArray = new JSONArray();
         for (User user : userRepository.findAll()) {
             JSONObject userJSON = new JSONObject();
